@@ -1,0 +1,37 @@
+= form_with(model: lecture) do |form|
+  - if lecture.errors.any?
+    div style="color: red"
+      h2
+        = pluralize(lecture.errors.count, "error")
+        |  prohibited this lecture from being saved:
+      ul
+        - lecture.errors.each do |error|
+          li = error.full_message
+  .card style="width:370px;margin-left:10px;padding:10px;"
+    h5 Vytvořit přednášku
+    div style="margin-top:5px"
+      = form.label :učebna
+      = form.text_field :room
+    div style="margin-top:5px"
+      = form.label :den
+      = form.select :day, ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    div style="margin-top:5px"
+      = form.label :Typ_hodiny
+      = form.select :lecture_type, ["Lecture", "Seminar", "Exercise"]
+    div style="margin-top:5px"
+      = form.label :délka
+      = form.select :length, [0.75,1.5,2.5]
+    div style="margin-top:5px"
+      = form.label :učitel
+      = form.text_field :teacher
+    div style="margin-top:5px"
+      = form.label :začátek
+      = form.time_select :start_time
+    div style="margin-top:5px"
+      = form.label :předmět
+      = form.collection_select :predmet_id, Predmet.all, :id, :name, include_blank: true
+    div style="margin-top:5px"
+      = form.label :více_cvičení_v_jednu_dobu
+      = form.check_box :is_stacked
+    div 
+      = form.submit class:"btn btn-success"

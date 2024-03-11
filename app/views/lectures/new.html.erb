@@ -1,0 +1,13 @@
+<h3 style="margin-left:10px">Nová hodina</h3>
+
+<%= render "form", lecture: @lecture %>
+
+
+<div class="card" style="width:370px;margin-left:10px;padding:10px;margin-top:5px;">
+<h5>Importovat hodiny</h5>
+<span>Můžete importovat hodiny z csv souborů</span>
+<%= form_tag import_lectures_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import CSV",class:"btn btn-success" ,style:"margin-top:5px;"%>
+<% end %>
+</div>

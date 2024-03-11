@@ -1,0 +1,29 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Předměty</h1>
+
+<div id="predmets">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Jméno</th>
+        <th>Zkratka</th>
+        <th>Učitel</th>
+        <th>Kategorie</th>
+        <th>Upravit</th>
+        <th>Smazat</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @predmets.each do |predmet| %>
+        <tr>
+          <td><%= predmet.name %></td>
+          <td style="font-weight:bold ;color: <%= predmet.color %>;"><%= predmet.adbreviation %></td>
+          <td><%= predmet.teacher %></td>
+          <td style="color: <%= predmet.status == 'A' ? 'green' : predmet.status == 'B' ? 'yellow' : 'red' %>;"><%= predmet.status %></td>          <td><%= link_to 'Upravit', edit_predmet_path(predmet), class: "btn btn-outline-light" , style:"color: #9FA0EF; border-color: #9FA0EF"  %></td>
+          <td><%= link_to 'Smazat', predmet, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

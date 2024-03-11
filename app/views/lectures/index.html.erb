@@ -1,0 +1,42 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Hodiny</h1>
+
+<p style="font-weight:bold;">Legenda:</p>
+  <p>
+    <span style="background-color:darkgrey;color:white;">Šedé</span> jsou přednášky - <span style="font-weight:bold;">povinné</span>.
+    <br>
+    <span style="color:green;font-weight:bold;">Zelené</span> jsou právě vybrané 
+  </p>
+
+<div id="lectures">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Učebna</th>
+        <th>Začátek</th>
+        <th>Délka (hodiny)</th>
+        <th>Den v týdnu</th>
+        <th>Předmět</th>
+        <th>Upravit</th>
+        <th>Smazat</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @lectures.each do |lecture| %>
+        <tr>
+          <td><%= lecture.room %></td>
+          <td><%= lecture.start_time.strftime("%H:%M") %></td>
+          <td><%= lecture.length %></td>
+          <td><%= lecture.day %></td>
+          <td style="<%= 'background-color: grey;font-weight: bold;color:white;' if lecture.lecture_type == 'Lectures' %><%= 'color:green;font-weight: bold;' if lecture.is_checked && lecture.lecture_type!="Lectures" %>">
+            <%= lecture.predmet.name %>
+          </td>          
+          <td><%= link_to 'Upravit', edit_lecture_path(lecture) %></td>
+          <td><%= link_to 'Smazat', lecture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+  

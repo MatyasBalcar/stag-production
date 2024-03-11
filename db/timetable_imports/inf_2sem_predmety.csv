@@ -1,0 +1,6 @@
+id,created_at,updated_at,name,adbreviation,status,teacher,color
+32,2023-12-28 20:09:41 UTC,2023-12-28 20:09:41 UTC,Diskretni struktury 2,DISK1,A,Kolarik,#eb4034
+33,2023-12-28 20:09:41 UTC,2023-12-28 20:09:41 UTC,Algoritmy 2,ALGO 2,A,Osicka,#ebe534
+34,2023-12-28 20:09:41 UTC,2023-12-28 20:09:41 UTC,Zaklady Programovani 2,ZPC2,A,Vecerka,#36ed2f
+35,2023-12-28 20:09:41 UTC,2023-12-28 20:09:41 UTC,Uvod do informacnich technologii,UDITE,A,Trnecka,#33e5e8
+36,2023-12-28 20:09:41 UTC,2023-12-28 20:09:41 UTC,Paradigmata programovani 2,PP2,A,Krupka,#c036e3

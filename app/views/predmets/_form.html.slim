@@ -1,0 +1,28 @@
+= form_with(model: predmet) do |form|
+  - if predmet.errors.any?
+    div style="color: red"
+      h2
+        = pluralize(predmet.errors.count, "error")
+        |  prohibited this predmet from being saved:
+      ul
+        - predmet.errors.each do |error|
+          li = error.full_message
+  .card style="width:370px;margin-left:10px;padding:10px;"
+    h5 Vytvořit předmět
+    div
+      = form.label :název
+      = form.text_field :name
+    div
+      = form.label :zkratka
+      = form.text_field :adbreviation
+    div
+      = form.label :učitel
+      = form.text_field :teacher
+    div
+      = form.label :kategorie
+      = form.select :status, ['A', 'B', 'C']
+    div
+      = form.label :barva
+      = form.color_field :color
+    div 
+      = form.submit class:"btn btn-success"

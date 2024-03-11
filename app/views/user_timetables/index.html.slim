@@ -1,0 +1,17 @@
+h4 style="margin-left:10px;" Uživatelské rozvrhy
+
+- @user_timetables.each_slice(4) do |timetable_group|
+  .card-group style="width:#{210 * timetable_group.size}px;margin-left:10px;"
+    - timetable_group.each do |user_timetable|
+      .card style="width:200px;"
+        .card-body.text-center
+          h5.card-title= user_timetable.name
+          = link_to "Stahnout", rails_blob_path(user_timetable.data_file, disposition: "attachment"), class: 'btn btn-outline-dark',style:"width:120px"
+          = button_to 'Importovat', import_user_timetable_path(user_timetable), method: :post, class: 'btn btn-outline-dark',style:"width:120px"
+          -if current_user.is_admin? || current_user.id == user_timetable.user_id
+            = button_to 'Smazat', user_timetable, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger',style:"width:120px"
+
+-if !current_user.is_admin?
+  | Přihlašte se jako admin pro mazání cizích uživatelských rozvrhů.
+-else
+  =button_to 'Smazat uživatelské rozvrhy', destroy_all_user_timetables_path, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger',style:"width:120px"

@@ -1,0 +1,56 @@
+<h4 class="card-title" style="margin:10px">Vysledky vyhledavani</h4>
+<div class="card" style="width: 500px;margin:10px">
+  <div class="card-body">
+
+
+    <h5>Hodiny</h5>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Predmet name</th>
+          <th>Lecture type</th>
+          <th>Room</th>
+          <th>Day</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @lecture_results.each do |result| %>
+         
+            <tr>
+              <td><%= result.predmet_name %></td>
+              <td><%= result.lecture_type %></td>
+              <td><%= result.room %></td>
+              <td><%= result.day %></td>
+            </tr>
+
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card" style="width: 500px;margin:10px">
+  <div class="card-body">
+    <h5>Predmety</h5>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Abbreviation</th>
+          <th>Teacher</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @predmet_results.each do |result| %>
+
+            <tr>
+              <td><%= result.name %></td>
+              <td><%= result.adbreviation %></td>
+              <td><%= result.teacher %></td>
+            </tr>
+
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

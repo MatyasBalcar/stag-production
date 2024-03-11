@@ -1,0 +1,65 @@
+h3 style="margin-left:10px;" Vitejte v systemu na planovani rozvrhu
+
+-if user_signed_in?
+    .card-group style="width:600px;margin-left:10px;"
+        .card 
+            .card-body 
+                .card-title.h5
+                    | Předměty
+                .card-text 
+                    | Předměty můžete vytvářet 
+                    = link_to "Přidat předmět", new_predmet_path, class: "btn btn-outline-dark", style: "margin-top:10px;"
+        .card 
+            .card-body 
+                .card-title.h5
+                    | Hodiny
+                .card-text 
+                    | Hodiny se přiřazují k předmětům.
+                    = link_to "Přidat hodinu", new_lecture_path, class: "btn btn-outline-dark", style: "margin-top:10px;"
+    .card style="width:600px;margin-left:10px;"
+        .card-body 
+            .card-title.h5
+                | Rozvrh
+            .card-text 
+                | Rozvrh je zobrazen v barevně indexovaném kalendáři.
+                br
+                = link_to "Zobrazit rozvrh", timetable_index_path, class: "btn btn-outline-info", style: "margin-top:10px;"
+    
+    .card style="width:600px;margin-left:10px;"
+        .card-body 
+            .card-title.h5
+                | Defaultní rozvrhy
+            .card-text 
+                | Defaultní rozvrhy jsou předpřipravené rozvrhy pro informatiku.
+                br
+                = button_to 'Informatika | II. semestr', import_data_path, method: :post, class: "btn btn-outline-light" , style:"color: #9FA0EF; border-color: #9FA0EF" 
+                hr/
+                = button_to 'Smazat vsechny predmety', delete_all_predmets_path, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-danger"
+    .card style="width:600px;margin-left:10px;"
+            .card-body 
+                .card-title.h5
+                    | Uživatelské rozvrhy
+                .card-text 
+                    = form_with model: UserTimetable.new, local: true do |form|
+                        = form.label :Název_souboru
+                        = form.text_field :name, placeholder: "Pouze .zip soubrory z teto stranky ;)", style:"width:270px;"
+                        = form.file_field :data_file
+                        - if @user_timetable.errors.any?
+                            #error_explanation
+                                ul
+                                - @user_timetable.errors.full_messages.each do |message|
+                                    li= message
+                        = form.submit "Upload" ,class:"btn btn-success"
+                    hr/
+                    |Pokud se vám nelíbí defaultní rozvrhy, můžete si vytvořit vlastní.
+                    br
+                    | Uživatelské rozvrhy jsou rozvrhy, které si můžete vytvořit sami.
+                    br
+                    | Vytvořte rozvrh ,potom ho můžete stáhnout 
+                    =link_to 'zde',  timetable_index_path
+                    |  a nahrát pro ostatní.
+                    br
+                    = link_to "Zobrazit uživatelské rozvrhy", user_timetables_path, class: "btn btn-outline-info", style: "margin-top:10px;"
+-else style="margin-left:10px;"
+    p Prihlaste se pro pouzivani stranky
+
