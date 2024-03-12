@@ -6,7 +6,6 @@ class Predmet < ApplicationRecord
 
     belongs_to :user
 
-    has_many :lectures, dependent: :destroy
 
     require 'csv'
 

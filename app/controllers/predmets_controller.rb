@@ -69,9 +69,7 @@ class PredmetsController < ApplicationController
     redirect_to root_url, notice: "Classes imported."
   end
   def delete_all
-    current_user.predmets.each do |predmet|
-      predmet.lectures.destroy_all
-    end
+    current_user.lectures.destroy_all
     current_user.predmets.destroy_all
     redirect_to root_path, notice: 'All your classes were successfully deleted.'
   end

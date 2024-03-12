@@ -57,20 +57,32 @@ class LecturesController < ApplicationController
   end
 
   # POST /lectures or /lectures.json
-  def create
-    @lecture = Lecture.new(lecture_params)
+  # def create
+  #   @lecture = Lecture.new(lecture_params)
 
-    respond_to do |format|
-      if @lecture.save
-        format.html { redirect_to root_path, notice: "Lecture was successfully created." }
-        format.json { render :show, status: :created, location: @lecture }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @lecture.errors, status: :unprocessable_entity }
-      end
+  #   respond_to do |format|
+  #     if @lecture.save
+  #       format.html { redirect_to root_path, notice: "Lecture was successfully created." }
+  #       format.json { render :show, status: :created, location: @lecture }
+  #     else
+  #       format.html { render :new, status: :unprocessable_entity }
+  #       format.json { render json: @lecture.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
+  def create
+    @lecture = current_user.lectures.build(lecture_params)
+    predmet = Predmet.find_by(name: @lecture.predmet_name)
+    if predmet
+      @lecture.color = predmet.color
+    end
+  
+    if @lecture.save
+      redirect_to @lecture, notice: 'Lecture was successfully created.'
+    else
+      render :new
     end
   end
-
   # PATCH/PUT /lectures/1 or /lectures/1.json
   def update
     respond_to do |format|
@@ -119,7 +131,7 @@ class LecturesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def lecture_params
-      params.fetch(:lecture, {}).permit(:predmet_name,:room, :teacher, :start_time, :end_time, :predmet_id, :day, :length, :lecture_type, :is_stacked, :is_checked)
+      params.fetch(:lecture, {}).permit(:predmet_name,:room, :teacher, :start_time, :end_time, :day, :length, :lecture_type, :is_stacked, :is_checked)
     end
 
 end

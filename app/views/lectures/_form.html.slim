@@ -29,7 +29,7 @@
       = form.time_select :start_time
     div style="margin-top:5px"
       = form.label :předmět
-      = form.collection_select :predmet_id, Predmet.all, :id, :name, include_blank: true
+      = form.collection_select :predmet_name, Predmet.all, :name, :name, include_blank: true  
     div style="margin-top:5px"
       = form.label :více_cvičení_v_jednu_dobu
       = form.check_box :is_stacked

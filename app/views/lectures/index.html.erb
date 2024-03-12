@@ -23,14 +23,14 @@
       </tr>
     </thead>
     <tbody>
-      <% @lectures.each do |lecture| %>
+      <% current_user.lectures.each do |lecture| %>
         <tr>
           <td><%= lecture.room %></td>
           <td><%= lecture.start_time.strftime("%H:%M") %></td>
           <td><%= lecture.length %></td>
           <td><%= lecture.day %></td>
           <td style="<%= 'background-color: grey;font-weight: bold;color:white;' if lecture.lecture_type == 'Lectures' %><%= 'color:green;font-weight: bold;' if lecture.is_checked && lecture.lecture_type!="Lectures" %>">
-            <%= lecture.predmet.name %>
+              <%= lecture.predmet_name %>
           </td>          
           <td><%= link_to 'Upravit', edit_lecture_path(lecture) %></td>
           <td><%= link_to 'Smazat', lecture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
