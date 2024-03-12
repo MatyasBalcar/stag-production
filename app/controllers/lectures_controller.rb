@@ -131,7 +131,7 @@ class LecturesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def lecture_params
-      params.fetch(:lecture, {}).permit(:predmet_name,:room, :teacher, :start_time, :end_time, :day, :length, :lecture_type, :is_stacked, :is_checked)
+      params.fetch(:lecture, {}).permit(:predmet_name,:room, :teacher, :start_time, :end_time, :day, :length, :lecture_type, :is_stacked, :is_checked,:color)
     end
 
 end
